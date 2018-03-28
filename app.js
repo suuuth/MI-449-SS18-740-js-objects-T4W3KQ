@@ -41,8 +41,8 @@ var jokeBox = document.getElementById('joke-box')
 var updateDisplayedJoke = function () {
   var requestedJokeKey = requestedJokeInput.value
   // jokeBox.textContent = requestedJokeKey
-  for (i = 0; i < Object.keys(jokes).length; i++) { // trying to loop through array
-    if (requestedJokeKey == Object.keys(jokes)[i]) { // and evaluate if the input matches any of the keys
+  for (var i = 0; i < Object.keys(jokes).length; i++) { // trying to loop through array
+    if (requestedJokeKey === Object.keys(jokes)[i]) { // and evaluate if the input matches any of the keys
       jokeBox.innerHTML = '<p>' + jokes['' + Object.keys(jokes)[i]].setup + '</p>' + '<p>' + jokes['' + Object.keys(jokes)[i]].punchline + '</p>'
       break
     } else {
@@ -82,7 +82,7 @@ var newJokePunch = document.getElementById('new-joke-punchline')
 var addNewJoke = function () {
   jokes['' + newJokeKey.value] = {setup: '' + newJokeSetup.value, punchline: '' + newJokePunch.value}
   window.localStorage.setItem('jokes', JSON.stringify(jokes))
-  location.reload()
+  window.location.reload()
 }
 
 newJoke.addEventListener('click', addNewJoke)
@@ -92,7 +92,7 @@ var forgetJokeKey = document.getElementById('forget-joke-key')
 var eraseJoke = function () {
   delete jokes['' + forgetJokeKey.value]
   window.localStorage.setItem('jokes', JSON.stringify(jokes))
-  location.reload()
+  window.location.reload()
 }
 
 forgetJokeBtn.addEventListener('click', eraseJoke)
